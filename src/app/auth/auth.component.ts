@@ -6,19 +6,25 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../core';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  authType: String = '';
+  authType: String = ''; //make with enum and withdraw index.ts
   title: String = '';
   isSubmitting = false;
   authForm: FormGroup;
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) {
     this.authForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -35,9 +41,29 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  submitForm() {
+  register(credentials: Object) {
     this.isSubmitting = true;
+
+    this.userService.register(credentials).subscribe({
+      next: (data) => this.router.navigateByUrl('/'),
+      error: (err) => {
+        this.isSubmitting = false;
+      },
+    });
+  }
+
+  login(credentials: Object) {
+    this.isSubmitting = true;
+
+    this.userService.login(credentials);
+  }
+
+  submitForm() {
     const credentials = this.authForm.value;
-    console.log(credentials);
+    if (this.authType === 'login') {
+      this.login(credentials);
+    } else {
+      this.register(credentials);
+    }
   }
 }
