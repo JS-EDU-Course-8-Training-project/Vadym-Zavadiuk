@@ -55,7 +55,12 @@ export class AuthComponent implements OnInit {
   login(credentials: Object) {
     this.isSubmitting = true;
 
-    this.userService.login(credentials);
+    this.userService.login(credentials).subscribe({
+      next: (data) => this.router.navigateByUrl('/'),
+      error: (err) => {
+        this.isSubmitting = false;
+      },
+    });
   }
 
   submitForm() {
