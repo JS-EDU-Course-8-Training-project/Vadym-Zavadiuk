@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { UserService } from './core/services/user.service';
 import { ApiService } from './core/services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtService } from './core/services/jwt.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule,
     HttpClientModule,
   ],
-  providers: [ApiService, UserService],
+  providers: [ApiService, UserService, JwtService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

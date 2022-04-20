@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { JwtService } from './jwt.service';
 
 @Injectable()
 export class ApiService {
@@ -12,5 +13,9 @@ export class ApiService {
       `${environment.api_url}${path}`,
       JSON.stringify(body)
     );
+  }
+
+  get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+    return this.http.get(`${environment.api_url}${path}`, { params });
   }
 }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
 
 import { ApiService } from './api.service';
+import { JwtService } from './jwt.service';
 import { User } from '../models';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -14,14 +15,36 @@ export class UserService {
     .asObservable()
     .pipe(distinctUntilChanged());
 
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private apiService: ApiService, private http: HttpClient) {}
+  constructor(
+    private apiService: ApiService,
+    private http: HttpClient,
+    private jwtService: JwtService
+  ) {}
+
+  populate() {
+    if (this.jwtService.getToken()) {
+      this.apiService.get('/user').subscribe({
+        next: (data) => this.setAuth(data.user),
+        error: (err) => this.purgeAuth(),
+      });
+    } else {
+      this.purgeAuth();
+    }
+  }
 
   setAuth(user: User) {
+    this.jwtService.saveToken(user.token);
     this.currentUserSubject.next(user);
     this.isAuthenticatedSubject.next(true);
+  }
+
+  purgeAuth() {
+    this.jwtService.destroyToken();
+    this.currentUserSubject.next({} as User);
+    this.isAuthenticatedSubject.next(false);
   }
 
   register(credentials: Object): Observable<any> {
@@ -44,12 +67,6 @@ export class UserService {
           return data;
         })
       );
-    // .subscribe({
-    //   next: (res) => console.log('our response', res),
-    //   error: (e) => {
-    //     console.log(JSON.stringify(e.error.errors));
-    //   },
-    // });
   }
 
   getCurrentUser(): User {
