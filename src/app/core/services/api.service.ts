@@ -8,6 +8,10 @@ import { JwtService } from './jwt.service';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  put(path: string, body: Object = {}): Observable<any> {
+    return this.http.put(`${environment.api_url}${path}`, JSON.stringify(body));
+  }
+
   post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
       `${environment.api_url}${path}`,
