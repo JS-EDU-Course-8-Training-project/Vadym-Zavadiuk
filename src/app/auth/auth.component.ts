@@ -14,7 +14,7 @@ import { UserService } from '../core';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  authType: String = ''; //make with enum and withdraw index.ts
+  authType: String = ''; //make with enum
   title: String = '';
   isSubmitting = false;
   authForm: FormGroup;

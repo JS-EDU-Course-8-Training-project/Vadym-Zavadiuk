@@ -52,6 +52,8 @@ export class UserService {
       .post(`${environment.api_url}/users`, { user: credentials })
       .pipe(
         map((data: any) => {
+          // { user: User }
+          console.log(data);
           this.setAuth(data.user);
           return data;
         })
@@ -63,6 +65,7 @@ export class UserService {
       .post(`${environment.api_url}/users/login`, { user: credentials })
       .pipe(
         map((data: any) => {
+          // { user: User }
           this.setAuth(data.user);
           return data;
         })

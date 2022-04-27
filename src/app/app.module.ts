@@ -11,9 +11,11 @@ import { UserService } from './core/services/user.service';
 import { ApiService } from './core/services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtService } from './core/services/jwt.service';
-
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileModule } from './profile/profile.module';
+import { ProfilesService } from './core/services/profile.service';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, ProfileComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -22,8 +24,9 @@ import { JwtService } from './core/services/jwt.service';
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
+    ProfileModule,
   ],
-  providers: [ApiService, UserService, JwtService],
+  providers: [ApiService, UserService, JwtService, ProfilesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

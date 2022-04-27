@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserService } from 'src/app/core';
+import { User, UserService } from '../../core';
 
 @Component({
   selector: 'layout-header',
