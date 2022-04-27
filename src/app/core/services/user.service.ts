@@ -53,7 +53,6 @@ export class UserService {
       .pipe(
         map((data: any) => {
           // { user: User }
-          console.log(data);
           this.setAuth(data.user);
           return data;
         })
