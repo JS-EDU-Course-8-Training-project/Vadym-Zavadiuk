@@ -28,4 +28,9 @@ export class ProfileComponent implements OnInit {
       this.isUser = this.currentUser.username === this.profile.username;
     });
   }
+
+  onToggleFollowing(following: any) {
+    //boolean, but doesn't work
+    this.profile.following = following;
+  }
 }

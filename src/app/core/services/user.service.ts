@@ -52,7 +52,7 @@ export class UserService {
       .post(`${environment.api_url}/users`, { user: credentials })
       .pipe(
         map((data: any) => {
-          // { user: User }
+          // { user: User } instead any, but doesn't work
           this.setAuth(data.user);
           return data;
         })
@@ -64,7 +64,7 @@ export class UserService {
       .post(`${environment.api_url}/users/login`, { user: credentials })
       .pipe(
         map((data: any) => {
-          // { user: User }
+          // { user: User } instead any, but doesn't work
           this.setAuth(data.user);
           return data;
         })
