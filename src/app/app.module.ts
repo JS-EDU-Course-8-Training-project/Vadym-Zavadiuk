@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtService } from './core/services/jwt.service';
 import { ProfileModule } from './profile/profile.module';
 import { ProfilesService } from './core/services/profile.service';
+import { EditorModule } from 'src/app/editor/editor.module';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -24,6 +25,7 @@ import { ProfilesService } from './core/services/profile.service';
     AuthModule,
     HttpClientModule,
     ProfileModule,
+    EditorModule,
   ],
   providers: [ApiService, UserService, JwtService, ProfilesService],
   bootstrap: [AppComponent],
