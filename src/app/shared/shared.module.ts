@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShowAuthedDirective } from './show-authed.directive';
 import { RouterModule } from '@angular/router';
 import { FollowButtonComponent } from './buttons/follow-component.component';
+import { ArticleMetaComponent } from './article-helpers/article-meta.component';
+import { FavoriteButtonComponent } from './buttons/favorite-button.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,8 +15,15 @@ import { FollowButtonComponent } from './buttons/follow-component.component';
     RouterModule,
     HttpClientModule,
   ],
-  declarations: [ShowAuthedDirective, FollowButtonComponent],
+  declarations: [
+    ShowAuthedDirective,
+    FollowButtonComponent,
+    ArticleMetaComponent,
+    FavoriteButtonComponent,
+  ],
   exports: [
+    ArticleMetaComponent,
+    FavoriteButtonComponent,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

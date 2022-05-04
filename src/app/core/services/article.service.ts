@@ -26,4 +26,16 @@ export class ArticlesService {
         .pipe(map((data) => data.article));
     }
   }
+
+  favorite(slug: string): Observable<Article> {
+    return this.apiService.post('/articles/' + slug + '/favorite');
+  }
+
+  unfavorite(slug: string): Observable<Article> {
+    return this.apiService.delete('/articles/' + slug + '/favorite');
+  }
+
+  destroy(slug: string) {
+    return this.apiService.delete('/articles/' + slug);
+  }
 }
