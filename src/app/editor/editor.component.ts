@@ -59,7 +59,7 @@ export class EditorComponent implements OnInit {
     this.updateArticle(this.articleForm.value);
 
     this.articlesService.save(this.article).subscribe({
-      next: () => this.router.navigateByUrl('/'),
+      next: (article) => this.router.navigateByUrl('/article/' + article.slug),
       error: (err) => {
         this.errors = err;
         this.isSubmitting = false;

@@ -14,6 +14,7 @@ import { JwtService } from './core/services/jwt.service';
 import { ProfileModule } from './profile/profile.module';
 import { ProfilesService } from './core/services/profile.service';
 import { EditorModule } from 'src/app/editor/editor.module';
+import { ArticleModule } from 'src/app/article/article.module';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -26,6 +27,7 @@ import { EditorModule } from 'src/app/editor/editor.module';
     HttpClientModule,
     ProfileModule,
     EditorModule,
+    ArticleModule,
   ],
   providers: [ApiService, UserService, JwtService, ProfilesService],
   bootstrap: [AppComponent],
