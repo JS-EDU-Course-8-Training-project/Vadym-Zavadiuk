@@ -9,6 +9,7 @@ import {
   AuthGuard,
   ProfilesService,
   ArticlesService,
+  CommentsService,
 } from './services';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
     AuthGuard,
     ProfilesService,
     ArticlesService,
+    CommentsService,
   ],
   declarations: [],
 })
