@@ -2,12 +2,29 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
-import { Article } from '../models';
+import { Article, ArticleListConfig } from '../models';
 import { map } from 'rxjs/operators';
+
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class ArticlesService {
   constructor(private apiService: ApiService) {}
+
+  query(
+    config: ArticleListConfig
+  ): Observable<{ articles: Article[]; articlesCount: number }> {
+    const params = {};
+
+    Object.keys(config.filters).forEach((key) => {
+      (params as any)[key] = (config.filters as any)[key];
+    });
+
+    return this.apiService.get(
+      '/articles' + (config.type === 'feed' ? '/feed' : ''),
+      new HttpParams({ fromObject: params })
+    );
+  }
 
   get(slug: string): Observable<Article> {
     return this.apiService

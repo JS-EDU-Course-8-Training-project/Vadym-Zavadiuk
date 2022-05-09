@@ -15,6 +15,7 @@ import { ProfileModule } from './profile/profile.module';
 import { ProfilesService } from './core/services/profile.service';
 import { EditorModule } from 'src/app/editor/editor.module';
 import { ArticleModule } from 'src/app/article/article.module';
+import { TagsService } from 'src/app/core';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -29,7 +30,13 @@ import { ArticleModule } from 'src/app/article/article.module';
     EditorModule,
     ArticleModule,
   ],
-  providers: [ApiService, UserService, JwtService, ProfilesService],
+  providers: [
+    ApiService,
+    UserService,
+    JwtService,
+    ProfilesService,
+    TagsService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
