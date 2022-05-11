@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
       //{ profile: Profile } instead any, but doesn't work
       this.profile = data.profile;
     });
-
     this.userService.currentUser.subscribe((userData: User) => {
       this.currentUser = userData;
       this.isUser = this.currentUser.username === this.profile.username;

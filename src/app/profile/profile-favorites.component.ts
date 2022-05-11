@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ArticleListConfig, Profile } from '../core';
 
@@ -9,7 +9,7 @@ import { ArticleListConfig, Profile } from '../core';
   styleUrls: ['./profile-favorites.component.scss'],
 })
 export class ProfileFavoritesComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute) {}
 
   profile!: Profile;
   favoritesConfig: ArticleListConfig = {
@@ -18,6 +18,7 @@ export class ProfileFavoritesComponent implements OnInit {
   };
 
   ngOnInit() {
+    console.log(this.route.parent?.data);
     this.route.parent?.data.subscribe((data: any) => {
       this.profile = data.profile;
       this.favoritesConfig.filters.favorited = this.profile.username;

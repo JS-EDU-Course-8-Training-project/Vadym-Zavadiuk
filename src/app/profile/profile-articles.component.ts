@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ArticleListConfig, Profile } from '../core';
 
@@ -9,7 +9,7 @@ import { ArticleListConfig, Profile } from '../core';
   styleUrls: ['./profile-articles.component.scss'],
 })
 export class ProfileArticlesComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute) {}
 
   profile!: Profile;
   articlesConfig: ArticleListConfig = {
