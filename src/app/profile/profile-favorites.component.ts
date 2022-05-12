@@ -18,10 +18,11 @@ export class ProfileFavoritesComponent implements OnInit {
   };
 
   ngOnInit() {
-    console.log(this.route.parent?.data);
-    this.route.parent?.data.subscribe((data: any) => {
-      this.profile = data.profile;
-      this.favoritesConfig.filters.favorited = this.profile.username;
-    });
+    if (this.route.parent) {
+      this.route.parent.data.subscribe((data: any) => {
+        this.profile = data.profile;
+        this.favoritesConfig.filters.favorited = this.profile.username;
+      });
+    }
   }
 }

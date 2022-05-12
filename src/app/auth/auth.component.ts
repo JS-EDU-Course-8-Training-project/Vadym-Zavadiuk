@@ -45,8 +45,8 @@ export class AuthComponent implements OnInit {
     this.isSubmitting = true;
 
     this.userService.register(credentials).subscribe({
-      next: (data) => this.router.navigateByUrl('/'),
-      error: (err) => {
+      next: () => this.router.navigateByUrl('/'),
+      error: () => {
         this.isSubmitting = false;
       },
     });
@@ -56,8 +56,8 @@ export class AuthComponent implements OnInit {
     this.isSubmitting = true;
 
     this.userService.login(credentials).subscribe({
-      next: (data) => this.router.navigateByUrl('/'),
-      error: (err) => {
+      next: () => this.router.navigateByUrl('/'),
+      error: () => {
         this.isSubmitting = false;
       },
     });

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ApiService {
+  debugElement: any;
   constructor(private http: HttpClient) {}
 
   put(path: string, body: Object = {}): Observable<any> {

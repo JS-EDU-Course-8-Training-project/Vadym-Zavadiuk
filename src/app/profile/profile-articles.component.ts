@@ -18,13 +18,15 @@ export class ProfileArticlesComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.route.parent?.data.subscribe((data: any) => {
-      this.profile = data.profile;
-      this.articlesConfig = {
-        type: 'all',
-        filters: {},
-      };
-      this.articlesConfig.filters.author = this.profile.username;
-    });
+    if (this.route.parent) {
+      this.route.parent.data.subscribe((data: any) => {
+        this.profile = data.profile;
+        this.articlesConfig = {
+          type: 'all',
+          filters: {},
+        };
+        this.articlesConfig.filters.author = this.profile.username;
+      });
+    }
   }
 }
