@@ -109,7 +109,7 @@ describe('ArticlesService', () => {
     service = TestBed.inject(ArticlesService);
   });
 
-  fit('class ApiService should be created', () => {
+  fit('class ArticlesService should be created', () => {
     expect(service).toBeTruthy();
   });
 
@@ -154,7 +154,6 @@ describe('ArticlesService', () => {
   });
 
   fit('method destroy should call method apiService.delete', () => {
-    fakeApiService.get.and.returnValue(of({ article: response }));
     service.destroy('123');
     expect(fakeApiService.delete).toHaveBeenCalledWith('/articles/123');
   });

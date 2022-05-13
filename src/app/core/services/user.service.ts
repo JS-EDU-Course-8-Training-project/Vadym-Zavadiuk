@@ -28,7 +28,7 @@ export class UserService {
     if (this.jwtService.getToken()) {
       this.apiService.get('/user').subscribe({
         next: (data) => this.setAuth(data.user),
-        error: (err) => this.purgeAuth(),
+        error: () => this.purgeAuth(),
       });
     } else {
       this.purgeAuth();

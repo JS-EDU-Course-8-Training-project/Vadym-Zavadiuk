@@ -2,10 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject, map, of, ReplaySubject, Subject, take } from 'rxjs';
 import { UserService } from 'src/app/core';
 
-import { NoAuthGuard } from './no-auth-guard.service';
+import { AuthGuard } from './auth-guard.service';
 
-describe('NoAuthGuard', () => {
-  let service: NoAuthGuard;
+describe('AuthGuard', () => {
+  let service: AuthGuard;
 
   const fakeUserService = jasmine.createSpyObj('fakeUserService', [], {
     isAuthenticated: new BehaviorSubject<boolean>(false).asObservable(),
@@ -14,14 +14,14 @@ describe('NoAuthGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        NoAuthGuard,
+        AuthGuard,
         {
           provide: UserService,
           useValue: fakeUserService,
         },
       ],
     });
-    service = TestBed.inject(NoAuthGuard);
+    service = TestBed.inject(AuthGuard);
   });
 
   fit('class NoAuthGuard should be created', () => {
@@ -30,7 +30,7 @@ describe('NoAuthGuard', () => {
 
   fit('method canActivate should be called', (done) => {
     service.canActivate().subscribe((result) => {
-      expect(result).toBe(true);
+      expect(result).toBe(false);
       done();
     });
   });
